@@ -6,29 +6,64 @@ import {
   AccordionPanel,
   Box,
   Flex,
+  Icon,
   Image,
-  Text
+  Link,
+  LinkBox,
+  LinkOverlay,
+  ListItem,
+  Text,
+  UnorderedList
 } from '@chakra-ui/react'
-import React from 'react'
-
+import React, { useState } from 'react'
+import { AddIcon } from '@chakra-ui/icons'
+import { MinusIcon } from '@chakra-ui/icons'
 interface LinkItemProps {
   name: string
   icon: string
+  moreicon: string
+  lessicon: string
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Notification', icon: 'Icon1.png' },
-  { name: 'Publish', icon: 'Icon2.png' },
-  { name: 'Engage', icon: 'Icon4.png' },
-  { name: 'Listen', icon: 'Icon5.png' },
-  { name: 'Report', icon: 'Icon6.png' }
+  {
+    name: 'NOTIFICATION',
+    icon: 'Icon1.png',
+    moreicon: 'SeeMore.png',
+    lessicon: 'SeeLess.png'
+  },
+  {
+    name: 'PUBLISH',
+    icon: 'Icon2.png',
+    moreicon: 'SeeMore.png',
+    lessicon: 'SeeLess.png'
+  },
+  {
+    name: 'ENGAGE',
+    icon: 'Icon4.png',
+    moreicon: 'SeeMore.png',
+    lessicon: 'SeeLess.png'
+  },
+  {
+    name: 'LISTEN',
+    icon: 'Icon5.png',
+    moreicon: 'SeeMore.png',
+    lessicon: 'SeeLess.png'
+  },
+  {
+    name: 'REPORT',
+    icon: 'Icon6.png',
+    moreicon: 'SeeMore.png',
+    lessicon: 'SeeLess.png'
+  }
 ]
 
 const NavbarMenu: React.FC = () => {
+  const [buttonValue, setButtonValue] = useState(false)
   return (
     <Flex
       w={'208px'}
       h='90vh'
-      bg='#1D1D1D'
+      bg='#484F58'
       flexDirection={'column'}
       alignItems='center'
     >
@@ -39,7 +74,7 @@ const NavbarMenu: React.FC = () => {
         px='25px'
         py='20px'
       >
-        <Image src='Icon1.png' pr={'15px'} />
+        <Image src='notf.svg' pr={'15px'} />
         <Text
           fontStyle='normal'
           fontWeight='500'
@@ -49,25 +84,81 @@ const NavbarMenu: React.FC = () => {
           NOTIFICATIONS
         </Text>
       </Flex>
-      <Accordion>
+      <Accordion w={'full'} defaultIndex={[0]} allowMultiple>
         {LinkItems.map((val, index) => {
           return (
             <AccordionItem key={index}>
-              <h2>
-                <AccordionButton>
-                  <Image src={val.icon} />
-                  <Box flex='1' textAlign='left'>
-                    {val.name}
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </AccordionPanel>
+              {({ isExpanded }) => (
+                <>
+                  <AccordionButton
+                    bg={'#484F58'}
+                    w='full'
+                    _focus={{
+                      bg: '#F55661'
+                    }}
+                  >
+                    <Image src={val.icon} pr='15px' />
+                    <Box flex={'1'} textAlign='left'>
+                      {val.name}
+                    </Box>
+
+                    {isExpanded ? (
+                      <MinusIcon fontSize='12px' />
+                    ) : (
+                      <AddIcon fontSize='12px' />
+                    )}
+                  </AccordionButton>
+
+                  <AccordionPanel pb={4} border='0' bg={'rgba(49, 54, 59, 1)'}>
+                    <UnorderedList>
+                      <ListItem
+                        _hover={{
+                          color: 'rgba(245, 86, 97, 1)'
+                        }}
+                      >
+                        <LinkBox>
+                          <LinkOverlay href='/#'>
+                            Lorem ipsum dolor sit amet
+                          </LinkOverlay>
+                        </LinkBox>
+                      </ListItem>
+                      <ListItem
+                        _hover={{
+                          color: 'rgba(245, 86, 97, 1)'
+                        }}
+                      >
+                        <LinkBox>
+                          <LinkOverlay href='/#'>
+                            Lorem ipsum dolor sit amet
+                          </LinkOverlay>
+                        </LinkBox>
+                      </ListItem>
+                      <ListItem
+                        _hover={{
+                          color: 'rgba(245, 86, 97, 1)'
+                        }}
+                      >
+                        <LinkBox>
+                          <LinkOverlay href='/#'>
+                            Lorem ipsum dolor sit amet
+                          </LinkOverlay>
+                        </LinkBox>
+                      </ListItem>
+                      <ListItem
+                        _hover={{
+                          color: 'rgba(245, 86, 97, 1)'
+                        }}
+                      >
+                        <LinkBox>
+                          <LinkOverlay href='/#'>
+                            Lorem ipsum dolor sit amet
+                          </LinkOverlay>
+                        </LinkBox>
+                      </ListItem>
+                    </UnorderedList>
+                  </AccordionPanel>
+                </>
+              )}
             </AccordionItem>
           )
         })}

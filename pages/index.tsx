@@ -1,11 +1,12 @@
+import { Flex } from '@chakra-ui/react'
 import { NextPage } from 'next'
-import Navbar from '../src/Components/Navbar/Navbar'
+import Header from '../src/Components/Header/Header'
 
 const Home: NextPage = () => {
   return (
-    <>
-      <Navbar />
-    </>
+    <Flex>
+      <Header />
+    </Flex>
   )
 }
 

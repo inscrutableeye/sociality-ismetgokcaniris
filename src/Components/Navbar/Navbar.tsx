@@ -2,18 +2,6 @@ import React from 'react'
 import { Flex, Image, Box } from '@chakra-ui/react'
 import NavbarMenu from './NavbarMenu'
 
-interface LinkItemProps {
-  name: string
-  icon: IconType
-}
-const LinkItems: Array<LinkItemProps> = [
-  { name: 'Notification', icon: 'Icon1.png' },
-  { name: 'Publish', icon: 'Icon2.png' },
-  { name: 'Engage', icon: 'Icon4.png' },
-  { name: 'Listen', icon: 'Icon5.png' },
-  { name: 'Report', icon: 'Icon6.png' }
-]
-
 const Navbar: React.FC = () => {
   return (
     <Flex flexDirection={'column'} alignItems='start'>
